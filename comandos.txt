@@ -1,5 +1,5 @@
 docker build -t docker-python .
-docker run --name meu_primeiro_conteiner -p 127.0.0.1:8000:8000 docker-python -D
+docker run --name meu_primeiro_conteiner -p 127.0.0.1:8000:8000 docker-python
 
 docker run --name mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=ideia -d mysql:latest
 

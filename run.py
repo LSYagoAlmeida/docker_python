@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 import requests
+from src import UserRepo
 app = Flask(__name__)
 
 @app.route("/")
@@ -16,5 +17,10 @@ def get_cnpj(cnpj):
     else:
         return jsonify({'error': 'Erro ao consultar CNPJ'}), response.status_code
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route("/insert", methods=[POST])
+def insert():
+    userRepo = UserRepo()
+    body = requests.json
+
+    userRepo.Insert_user(body["name"])
+    return 'registro inserido com sucesso!'
