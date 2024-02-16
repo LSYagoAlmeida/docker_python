@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import requests
 from src import UserRepo
 app = Flask(__name__)
@@ -17,10 +17,15 @@ def get_cnpj(cnpj):
     else:
         return jsonify({'error': 'Erro ao consultar CNPJ'}), response.status_code
 
-@app.route("/insert", methods=[POST])
+@app.route("/insert", methods=["POST"])
 def insert():
+    
     userRepo = UserRepo()
-    body = requests.json
+    body = request.json
 
-    userRepo.Insert_user(body["name"])
-    return 'registro inserido com sucesso!'
+    userRepo.insert_user(body["name"])
+
+    return 'Registro inserido com sucesso!'
+
+if __name__ == '__main__':
+    app.run(debug=True)
